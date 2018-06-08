@@ -54,7 +54,7 @@ open class _TextAreaCell<T> : Cell<T>, UITextViewDelegate, AreaCell where T: Equ
 
     private var awakeFromNibCalled = false
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -62,7 +62,7 @@ open class _TextAreaCell<T> : Cell<T>, UITextViewDelegate, AreaCell where T: Equ
         self.textView = textView
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.keyboardType = .default
-        textView.font = .preferredFont(forTextStyle: .body)
+        textView.font = .preferredFont(forTextStyle: UIFont.TextStyle.body)
         textView.textContainer.lineFragmentPadding = 0
         textView.textContainerInset = UIEdgeInsets.zero
         contentView.addSubview(textView)
@@ -92,7 +92,7 @@ open class _TextAreaCell<T> : Cell<T>, UITextViewDelegate, AreaCell where T: Equ
         let textAreaRow = row as! TextAreaConformance
         switch textAreaRow.textAreaHeight {
         case .dynamic(_):
-            height = { UITableViewAutomaticDimension }
+            height = { UITableView.automaticDimension }
             textView.isScrollEnabled = false
         case .fixed(let cellHeight):
             height = { cellHeight }
@@ -265,7 +265,7 @@ open class _TextAreaCell<T> : Cell<T>, UITextViewDelegate, AreaCell where T: Equ
 
 open class TextAreaCell: _TextAreaCell<String>, CellType {
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 

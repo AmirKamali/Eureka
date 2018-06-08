@@ -59,7 +59,7 @@ open class BaseRow: BaseRowType {
     public var title: String?
 
     /// Parameter used when creating the cell for this row.
-    public var cellStyle = UITableViewCellStyle.value1
+    public var cellStyle = UITableViewCell.CellStyle.value1
 
     /// String that uniquely identifies a row. Must be unique among rows and sections.
     public var tag: String?
@@ -260,7 +260,7 @@ extension BaseRow: Equatable, Hidable, Disableable {}
 
 extension BaseRow {
 
-    public func reload(with rowAnimation: UITableViewRowAnimation = .none) {
+    public func reload(with rowAnimation: UITableView.RowAnimation = .none) {
         guard let tableView = baseCell?.formViewController()?.tableView ?? (section?.form?.delegate as? FormViewController)?.tableView, let indexPath = indexPath else { return }
         tableView.reloadRows(at: [indexPath], with: rowAnimation)
     }
@@ -271,7 +271,7 @@ extension BaseRow {
         tableView.deselectRow(at: indexPath, animated: animated)
     }
 
-    public func select(animated: Bool = false, scrollPosition: UITableViewScrollPosition = .none) {
+    public func select(animated: Bool = false, scrollPosition: UITableView.ScrollPosition = .none) {
         guard let indexPath = indexPath,
             let tableView = baseCell?.formViewController()?.tableView ?? (section?.form?.delegate as? FormViewController)?.tableView  else { return }
         tableView.selectRow(at: indexPath, animated: animated, scrollPosition: scrollPosition)

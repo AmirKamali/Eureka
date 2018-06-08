@@ -26,7 +26,7 @@ import Foundation
 
 open class PickerInlineCell<T: Equatable> : Cell<T>, CellType {
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
@@ -88,6 +88,6 @@ public final class PickerInlineRow<T> : _PickerInlineRow<T>, RowType, InlineRowT
     public func setupInlineRow(_ inlineRow: InlineRow) {
         inlineRow.options = self.options
         inlineRow.displayValueFor = self.displayValueFor
-        inlineRow.cell.height = { UITableViewAutomaticDimension }
+        inlineRow.cell.height = { UITableView.automaticDimension }
     }
 }

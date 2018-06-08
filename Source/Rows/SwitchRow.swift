@@ -30,7 +30,7 @@ open class SwitchCell: Cell<Bool>, CellType {
 
     @IBOutlet public weak var switchControl: UISwitch!
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let switchC = UISwitch()
         switchControl = switchC
@@ -45,11 +45,11 @@ open class SwitchCell: Cell<Bool>, CellType {
     open override func setup() {
         super.setup()
         selectionStyle = .none
-        switchControl.addTarget(self, action: #selector(SwitchCell.valueChanged), for: .valueChanged)
+        switchControl.addTarget(self, action: #selector(SwitchCell.valueChanged), for: UIControl.Event.valueChanged)
     }
 
     deinit {
-        switchControl?.removeTarget(self, action: nil, for: .allEvents)
+        switchControl?.removeTarget(self, action: nil, for: UIControl.Event.allEvents)
     }
 
     open override func update() {

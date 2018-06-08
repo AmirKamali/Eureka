@@ -34,7 +34,7 @@ open class NavigationAccessoryView: UIToolbar {
 
     public override init(frame: CGRect) {
         super.init(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 44.0))
-        autoresizingMask = .flexibleWidth
+        autoresizingMask = UIView.AutoresizingMask.flexibleWidth
         fixedSpace.width = 22.0
         initializeChevrons()
         setItems([previousButton, fixedSpace, nextButton, flexibleSpace, doneButton], animated: false)

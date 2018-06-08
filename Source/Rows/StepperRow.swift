@@ -15,7 +15,7 @@ open class StepperCell: Cell<Double>, CellType {
     @IBOutlet public weak var stepper: UIStepper!
     @IBOutlet public weak var valueLabel: UILabel?
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         let stepper = UIStepper()
         self.stepper = stepper
         self.stepper.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +30,7 @@ open class StepperCell: Cell<Double>, CellType {
         addSubview(stepper)
         addSubview(valueLabel)
 
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v]-[s]-|", options: .alignAllCenterY, metrics: nil, views: ["s": stepper, "v": valueLabel]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v]-[s]-|", options: NSLayoutConstraint.FormatOptions.alignAllCenterY, metrics: nil, views: ["s": stepper, "v": valueLabel]))
         addConstraint(NSLayoutConstraint(item: stepper, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1.0, constant: 0))
         addConstraint(NSLayoutConstraint(item: valueLabel, attribute: .centerY, relatedBy: .equal, toItem: stepper, attribute: .centerY, multiplier: 1.0, constant: 0))
     }
@@ -43,12 +43,12 @@ open class StepperCell: Cell<Double>, CellType {
         super.setup()
         selectionStyle = .none
 
-        stepper.addTarget(self, action: #selector(StepperCell.valueChanged), for: .valueChanged)
+        stepper.addTarget(self, action: #selector(StepperCell.valueChanged), for: UIControl.Event.valueChanged)
         valueLabel?.textColor = stepper.tintColor
     }
 
     deinit {
-        stepper.removeTarget(self, action: nil, for: .allEvents)
+        stepper.removeTarget(self, action: nil, for: UIControl.Event.allEvents)
     }
 
     open override func update() {

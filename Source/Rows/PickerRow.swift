@@ -32,7 +32,7 @@ open class PickerCell<T> : Cell<T>, CellType, UIPickerViewDataSource, UIPickerVi
 
     private var pickerRow: _PickerRow<T>? { return row as? _PickerRow<T> }
 
-    public required init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    public required init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         let pickerView = UIPickerView()
         self.picker = pickerView
         self.picker?.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +52,7 @@ open class PickerCell<T> : Cell<T>, CellType, UIPickerViewDataSource, UIPickerVi
         super.setup()
         accessoryType = .none
         editingAccessoryType = .none
-        height = { UITableViewAutomaticDimension }
+        height = { UITableView.automaticDimension }
         picker.delegate = self
         picker.dataSource = self
     }

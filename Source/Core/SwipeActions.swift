@@ -32,13 +32,15 @@ public class SwipeAction: ContextualAction {
                 strongSelf.handler(strongSelf, forRow, completion)
             }
         } else {
-            action = UITableViewRowAction(style: style.contextualStyle as! UITableViewRowActionStyle,title: title){ [weak self] (action, indexPath) -> Void in
+            action = UITableViewRowAction(style: style.contextualStyle as! UITableViewRowAction.Style,title: title){ [weak self] (action, indexPath) -> Void in
                 guard let strongSelf = self else{ return }
                 strongSelf.handler(strongSelf, forRow, nil)
             }
         }
-        action.backgroundColor = self.backgroundColor ?? action.backgroundColor
-        action.image = self.image ?? action.image
+        let backgroundColor = self.backgroundColor ?? action.backgroundColor
+        action.backgroundColor = backgroundColor
+        let image = self.image ?? action.image
+        action.image = image
         
         return action
     }
@@ -58,9 +60,9 @@ public class SwipeAction: ContextualAction {
             } else {
                 switch self{
                 case .normal:
-                    return UITableViewRowActionStyle.normal
+                    return UITableViewRowAction.Style.normal
                 case .destructive:
-                    return UITableViewRowActionStyle.destructive
+                    return UITableViewRowAction.Style.destructive
                 }
             }
         }
@@ -106,10 +108,21 @@ extension UITableViewRowAction: ContextualAction {
 }
 
 @available(iOS 11.0, *)
-extension UIContextualAction: ContextualAction {}
+extension UIContextualAction: ContextualAction {
+    var backgroundColor: UIColor? {
+        get {
+            return nil
+        }
+        set {
+            //unsupportted
+        }
+    }
+    
+    
+}
 
 public protocol ContextualStyle{}
-extension UITableViewRowActionStyle: ContextualStyle {}
+extension UITableViewRowAction.Style: ContextualStyle {}
 
 @available(iOS 11.0, *)
 extension UIContextualAction.Style: ContextualStyle {}
